@@ -10,7 +10,6 @@
     nix-direnv
     nixfmt-classic
     age
-    aichat
   ];
 
   home.file = {
@@ -42,7 +41,7 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = pkgs.emacs-macport;
     extraConfig = ''
           (add-hook 'tuareg-mode-hook 'merlin-mode)
           (with-eval-after-load
@@ -76,5 +75,9 @@
         haskell-mode
         exec-path-from-shell
       ];
+  };
+  programs.alacritty = {
+    enable = true;
+    theme = "catppuccin_mocha";
   };
 }

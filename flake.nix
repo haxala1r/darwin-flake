@@ -15,7 +15,7 @@
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs;
-        [ vim librewolf utm btop
+        [ vim utm btop jan
           godot-darwin.packages.aarch64-darwin.default
         ];
       nixpkgs.config.allowUnfree = true;
