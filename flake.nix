@@ -18,8 +18,9 @@
         [ vim utm btop jan
           godot-darwin.packages.aarch64-darwin.default
         ];
-      nixpkgs.config.allowUnfree = true;
       
+      nixpkgs.config.allowUnfree = true;
+      nix.package = pkgs.lixVersions.latest;
       # Enable/disable sshd
       services.openssh.enable = false;
 
