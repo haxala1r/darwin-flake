@@ -19,7 +19,7 @@
           godot-darwin.packages.aarch64-darwin.default
         ];
       nixpkgs.config.allowUnfree = true;
-      nix.enable = false; # I manage nix myself      
+      
       # Enable/disable sshd
       services.openssh.enable = false;
 
