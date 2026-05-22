@@ -13,9 +13,7 @@ in
 
   home.packages = with pkgs; [
     python3
-    direnv
     fastfetch
-    nix-direnv
     nixfmt
     age
   ];
@@ -46,6 +44,13 @@ in
       cs = "container system start";
     };
   };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableNushellIntegration = true;
+  };
+  
   programs.zsh = {
     enable = true;
   };
@@ -69,7 +74,7 @@ in
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-macport;
+    package = pkgs.emacs;
     extraConfig = ''
         (add-hook 'tuareg-mode-hook 'merlin-mode)
         (with-eval-after-load
