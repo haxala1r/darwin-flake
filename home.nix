@@ -1,13 +1,6 @@
 { config, pkgs, ... }:
 
 
-let
-  nuWithNixEnv = pkgs.writeScriptBin "nu-with-nix-env" ''
-    #!/usr/bin/env bash
-    source /etc/bashrc
-    exec ${pkgs.nushell}/bin/nu "$@"
-  '';
-in
 {
   home.stateVersion = "26.05";
 
@@ -26,29 +19,13 @@ in
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      direnv hook fish | source
     '';
-  };
-  programs.nushell = {
-    enable = true;
-    settings = {
-      show_banner = false;
-    };
-    extraConfig = ''
-    def cl [--all] {
-    (if $all {container ls -a} else {container ls}) |from ssv -a |update CPUS {|i| $i.CPUS |into int} |update MEMORY {|i| $i.MEMORY |into filesize } |update STARTED {|i| if $i.STARTED == "" { "DOWN" } else { $i.STARTED |into datetime }}}
-    '';
-    shellAliases = {
-      
-      cr = "container run";
-      cs = "container system start";
-    };
   };
 
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    enableNushellIntegration = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
   };
   
@@ -59,6 +36,7 @@ in
   programs.nix-your-shell = {
     enable = true;
     enableNushellIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.git = {
@@ -115,7 +93,7 @@ in
     theme = "catppuccin_mocha";
     settings = {
       font.size = 18;
-      terminal.shell.program = "${nuWithNixEnv}/bin/nu-with-nix-env";
+      terminal.shell.program = "${pkgs.fish}/bin/fish";
     };
   };
 }
