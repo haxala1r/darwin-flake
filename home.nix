@@ -9,6 +9,8 @@
     fastfetch
     nixfmt
     age
+    opencode
+    google-cloud-sdk
   ];
 
   home.file = { };
