@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 
-
 {
   home.stateVersion = "26.05";
 
@@ -30,7 +29,7 @@
     enableFishIntegration = true;
     enableZshIntegration = true;
   };
-  
+
   programs.zsh = {
     enable = true;
   };
@@ -55,8 +54,9 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs;
+    package = pkgs.emacs-macport;
     extraConfig = ''
+        (envrc-global-mode)
         (add-hook 'tuareg-mode-hook 'merlin-mode)
         (with-eval-after-load
       		'company
@@ -66,18 +66,16 @@
         (add-hook 'haskell-mode-hook 'eglot-ensure)
 
         (load-theme 'leuven-dark 't)
-        (envrc-global-mode)
+        
 
         ;; configure meta key to be command instead of option
         (setq mac-command-modifier 'meta)
         (setq mac-option-modifier 'none)
 
-        ;; grab PATH from a fresh shell
-        (exec-path-from-shell-initialize)
         (set-face-attribute 'default nil :height 160)
     '';
-    extraPackages = epkgs:
-      with epkgs; [
+    extraPackages =
+      epkgs: with epkgs; [
         tuareg
         dune
         merlin
@@ -87,7 +85,7 @@
         nixfmt
         yaml-mode
         haskell-mode
-        exec-path-from-shell
+        cmake-mode
       ];
   };
   programs.alacritty = {
