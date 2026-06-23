@@ -86,7 +86,11 @@
         yaml-mode
         haskell-mode
         cmake-mode
+	markdown-mode
       ];
+  };
+  programs.vscodium = {
+    enable = true;
   };
   programs.alacritty = {
     enable = true;

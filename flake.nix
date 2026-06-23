@@ -17,6 +17,7 @@
       environment.systemPackages = with pkgs;
         [ vim utm btop jan
           godot-darwin.packages.aarch64-darwin.default
+          zoom-us
         ];
       
       nixpkgs.config.allowUnfree = true;
