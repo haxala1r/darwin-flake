@@ -21,7 +21,7 @@
         ];
       
       nixpkgs.config.allowUnfree = true;
-      nix.package = pkgs.lixVersions.latest;
+      nix.package = pkgs.lixPackageSets.latest.lix;
       # Enable/disable sshd
       services.openssh.enable = false;
 
