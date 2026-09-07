@@ -15,7 +15,7 @@
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs;
-        [ vim utm btop jan
+        [ vim utm btop
           godot-darwin.packages.aarch64-darwin.default
           zoom-us
         ];
@@ -24,6 +24,7 @@
       nix.package = pkgs.lixPackageSets.latest.lix;
       # Enable/disable sshd
       services.openssh.enable = false;
+      system.primaryUser = "haxala1r";
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
