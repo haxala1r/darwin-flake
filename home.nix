@@ -49,18 +49,24 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    signing.key = "~/.ssh/id_ed25519.pub";
     signing.signByDefault = true;
     settings = {
       user.name = "Emin Arslan";
       user.email = "me@emin.engineer";
-      gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
     };
   };
 
   programs.emacs = {
-    enable = true;
+    # I put a lot of effort into this config so I don't
+    # want to get rid of it in case it's useful...
+    # but I also haven't really used emacs in a long while,
+    # helix is very good and vscode is good enough when
+    # helix doesn't cut it.
+    #
+    # so I'm temporarily disabling emacs, to see if I actually
+    # use it. if I don't, I'll get rid of it at some point.
+    enable = false;
     package = pkgs.emacs-macport;
     extraConfig = ''
         (envrc-global-mode)
@@ -115,7 +121,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry_mac;
+    pinentry.package = pkgs.pinentry_mac;
     enableZshIntegration = true;
     enableFishIntegration = true;
   };
