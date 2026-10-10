@@ -15,7 +15,7 @@
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs;
-        [ vim utm btop
+        [ vim utm btop obsidian
           godot-darwin.packages.aarch64-darwin.default
           zoom-us
         ];
@@ -29,6 +29,11 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
+      homebrew.enable = true;
+      homebrew.casks = [
+        "sikarugir-app/sikarugir/sikarugir"
+      ];
+      homebrew.onActivation.cleanup = "check";
       # Enable alternative shell support in nix-darwin.
       programs.fish.enable = true;
 

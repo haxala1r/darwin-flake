@@ -107,4 +107,16 @@
       terminal.shell.program = "${pkgs.fish}/bin/fish";
     };
   };
+
+  # gpg config
+  programs.gpg = {
+    enable = true;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry_mac;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
+  };
 }
