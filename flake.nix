@@ -15,7 +15,7 @@
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs;
-        [ vim utm btop obsidian
+        [ vim utm btop obsidian thunderbird
           godot-darwin.packages.aarch64-darwin.default
           zoom-us
         ];
